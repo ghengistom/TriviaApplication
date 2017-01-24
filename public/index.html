@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Trivia App </title>
+    <h1> The Trivia App </h1>
+  </head>
+  <body>
+      <p>The process of delving into the black abyss is to me the keenest form of fascination. Peer int the abyss as you test your trivia knowlege.</p>
+      <br></br>
+
+      <p data-bind="text: trivia_question" id="trivia_question"></p>
+      <br></br>
+
+      <p data-bind="text: user_who_submitted_answer" id="user_who_submitted_answer"></p>
+      <p data-bind="text: user_answer_correctness" id="user_answer_correctness"></p>
+      <br></br>
+
+      <input data-bind="click: get_question" type="button" id="get_question" value="Get New Question"></input>
+      <br></br>
+
+      <input id="user_name"></input>
+      <input data-bind="click: submit_user_name" type="button" id="submit_user_name_button" value="Join">
+      <br></br>
+
+      <input id="user_answer_text"></input>
+      <input data-bind="click: submit_trivia_answer" type="button" id="submit_trivia_answer_button" value="Submit">
+      <br></br>
+
+      <p data-bind="text: right_score" id="right_score"></p>
+      <p data-bind="text: wrong_score" id="wrong_score"></p>
+      <br></br>
+
+      <p>Online Users:</p>
+      <ul data-bind="foreach: online_users" id="online_users">
+          <li data-bind="text: $data"></li>
+      </ul>
+
+  </body>
+
+  <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js'></script>
+  <script type="text/javascript" src="./index.js"> </script>
+
+</html>
