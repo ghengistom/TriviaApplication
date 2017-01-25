@@ -13,7 +13,7 @@
 
 
 // setup connection.
-var socket = io.connect('http://localhost:4200');
+var socket = io.connect('http://localhost:9001');
 
 
 
