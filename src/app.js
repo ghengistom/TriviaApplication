@@ -25,7 +25,7 @@ app.listen(9000, function() {
 //socket io server
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
-server.listen(4200);
+server.listen(9001);
 
 //===================================================================================
 // listen for connection
