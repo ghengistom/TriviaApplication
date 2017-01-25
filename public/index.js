@@ -13,7 +13,7 @@
 
 
 // setup connection.
-var socket = io.connect('http://localhost:9001');
+var socket = io.connect('http://automizelife.com:9001');
 
 
 
