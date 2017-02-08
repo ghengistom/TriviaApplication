@@ -1,6 +1,7 @@
 //==============================================================================
 // router.js
 //==============================================================================
+var path = require('path');
 var express = require('express');
 var Question = require('../models/question');
 var redis = require("redis"); //require redis module
@@ -12,6 +13,18 @@ var counts = {};
 var client = redis.createClient();
 
 counts.right = 0;
+
+
+
+
+
+
+router.get('/signin', function(req,res) {
+  res.sendFile(path.resolve('public/signin.html'));
+})
+
+
+
 
 //==============================================================================
 //Returns a single trivia question:
