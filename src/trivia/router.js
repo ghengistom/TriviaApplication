@@ -18,10 +18,32 @@ counts.right = 0;
 
 
 
+router.get('/signin1', function(req,res) {
+  res.sendFile(path.resolve('public/signin1.html'));
+
+});
+
+
+
+
+router.post('/signin1', function(req,res) {
+  var clientemail = req.body.email;
+
+
+
+  //var parseemail = JSON.parse(clientemail);
+  console.log("this is what the client sent to the server" + clientemail);
+
+
+});
+
 
 router.get('/signin', function(req,res) {
   res.sendFile(path.resolve('public/signin.html'));
-})
+});
+
+
+
 
 
 
