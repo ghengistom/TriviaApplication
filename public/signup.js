@@ -1,7 +1,7 @@
 var email;
 var password;
 
-$("#signinbutton").on('click', function(){
+$("#signupbutton").on('click', function(){
     email = $("#inputEmail").val();
     password = $("#inputPassword").val();
     console.log(email);
@@ -10,14 +10,10 @@ $("#signinbutton").on('click', function(){
     var object = {"email": email,
                   "password": password
                  }
-
-
     //var sobject = JSON.stringify(object);
-
-
     // send a POST request to our api to check if the user's answer is correct.
     $.ajax({
-      url: '/signin1',
+      url: '/signup',
       type: 'POST',
       data: JSON.stringify(object),
       contentType: "application/json; charset=utf-8",
@@ -34,11 +30,6 @@ $("#signinbutton").on('click', function(){
 
         }
     });
-
-    // Send the data using post
-    //var posting = $.post( /signin1, sobject );
-
-
 
     console.log("this is the contents of the email variable not stringified" + object);
     console.log("this is the contents of the email variable" + sobject);

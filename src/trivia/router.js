@@ -17,31 +17,63 @@ counts.right = 0;
 
 
 
-
-router.get('/signin1', function(req,res) {
-  res.sendFile(path.resolve('public/signin1.html'));
-
-});
-
-
-
-
-router.post('/signin1', function(req,res) {
-  var clientemail = req.body.email;
-
-
-
-  //var parseemail = JSON.parse(clientemail);
-  console.log("this is what the client sent to the server" + clientemail);
-
-
-});
-
+//=====================================================
+//Data for sign in
 
 router.get('/signin', function(req,res) {
   res.sendFile(path.resolve('public/signin.html'));
-});
+})
 
+router.get('/signin1', function(req,res) {
+  res.sendFile(path.resolve('public/signin1.html'));
+})
+
+
+//=====================================================
+//Data for sign in
+
+//Post to signin1
+//router.put('/questions/:id', function(req, res) {
+router.post('/signin1', function(req, res) {
+
+  var email = req.body.email;
+  var password = req.body.password;
+
+  console.log("This is the email" + email);
+  console.log("\n This is the password" + password);
+});
+//=====================================================
+//Data for sign in
+
+
+//=====================================================
+//Data for get sign up
+router.get('/signup', function(req,res) {
+    res.sendFile(path.resolve('public/signup.html'));
+
+});
+//=====================================================
+//Data for get sign up
+
+//=====================================================
+//Data for post sign up
+router.post('/signup', function(req, res) {
+  var email = req.body.email;
+  var password = req.body.password;
+
+  console.log("This is the email" + email);
+  console.log("\n This is the password" + password);
+})
+
+
+
+
+
+
+
+
+//=====================================================
+//Data for get sign up
 
 
 
