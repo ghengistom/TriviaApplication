@@ -5,85 +5,87 @@
     <link rel="stylesheet" type="text/css" href="./css/theme.css">
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>The Trivia App </title>
-    <h1 id="h01"> The Trivia App </h1>
+
   </head>
   <body>
+
+
+
+
 
 <!--BootStrap     -->
 <!--  create breakpoint fora large screen "col-lg-1 bg-warning"= column     -->
 <!-- lg = large screen  1 is how many columns you want the div to take up     -->
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-1 col-xs-4 bg-warning">
-          1
-        </div>
-        <div class="col-lg-1 col-xs-4 bg-info">
-          2
-        </div>
-        <div class="col-lg-1 col-xs-4 bg-danger">
-          3
-        </div>
-        <div class="col-lg-1 col-xs-4 bg-success">
-          4
-        </div>
-        <div class="col-lg-1 col-xs-4 bg-warning">
-          5
-        </div>
-        <div class="col-lg-1 col-xs-4 bg-info">
-          6
-        </div>
-        <div class="col-lg-1 col-xs-4 bg-danger">
-          7
-        </div>
-        <div class="col-lg-1 col-xs-4 bg-success">
-          8
-        </div>
-        <div class="col-lg-1 col-xs-4 bg-warning">
-          9
-        </div>
-        <div class="col-lg-1 col-xs-4 bg-info">
-          10
-        </div>
-        <div class="col-lg-1 col-xs-4 bg-danger">
-          11
-        </div>
-        <div class="col-lg-1 col-xs-4 bg-success">
-          12
-        </div>
-</div>
-</div>
 
-      <p id="p01">Open this site with different tabs or different computers and see how
-        this website updates in real-time using web sockets and knockout.js!</p>
-      <br></br>
 
-      <p data-bind="text: trivia_question" id="trivia_question"></p>
-      <br></br>
+        <div class="col-lg-12 col-xs-12 bg-info">
 
-      <p data-bind="text: user_who_submitted_answer" id="user_who_submitted_answer"></p>
-      <p data-bind="text: user_answer_correctness" id="user_answer_correctness"></p>
-      <br></br>
+            <h1 id="h01" class="text-center"> The Trivia App </h1>
+        </div>
 
-      <input data-bind="click: get_question" type="button" id="get_question" value="Get New Question"></input>
-      <br></br>
 
-      <input id="user_name"></input>
-      <input data-bind="click: submit_user_name" type="button" id="submit_user_name_button" value="Join">
-      <br></br>
+        <div class="col-lg-12 col-md-12 col-xs-12 bg-info">
+          <p id="p01" class="text-left"><br>Open this site with different tabs or different computers and see how
+            this website updates in real-time using web sockets and knockout.js!</p>
+        </div>
 
-      <input id="user_answer_text"></input>
-      <input data-bind="click: submit_trivia_answer" type="button" id="submit_trivia_answer_button" value="Submit">
-      <br></br>
 
-      <p data-bind="text: right_score" id="right_score"></p>
-      <p data-bind="text: wrong_score" id="wrong_score"></p>
-      <br></br>
+        <div class="col-lg-12 col-md-12 col-xs-12 bg-info">
 
-      <p>Online Users:</p>
-      <ul data-bind="foreach: online_users" id="online_users">
-          <li data-bind="text: $data"></li>
-      </ul>
+                <br></br>
+
+                <p data-bind="text: trivia_question" id="trivia_question"></p>
+                <input data-bind="click: get_question" type="button" id="get_question" value="Get New Question"></input>
+                <br></br>
+
+                <div class="col-lg-12 col-md-12 col-xs-12 bg-info">
+
+                        <p data-bind="text: user_who_submitted_answer" id="user_who_submitted_answer"></p>
+                        <p data-bind="text: user_answer_correctness" id="user_answer_correctness"></p>
+                        <br></br>
+                </div>
+        </div>
+
+
+        <div class="col-lg-12 col-md-12 col-xs-12 bg-info">
+          <br></br>
+
+          <input id="user_name"></input>
+          <input data-bind="click: submit_user_name" type="button" id="submit_user_name_button" value="Join">
+          <br></br>
+
+          <input id="user_answer_text"></input>
+          <input data-bind="click: submit_trivia_answer" type="button" id="submit_trivia_answer_button" value="Submit">
+          <br></br>
+
+          <p data-bind="text: right_score" id="right_score"></p>
+          <p data-bind="text: wrong_score" id="wrong_score"></p>
+          <br></br>
+
+          <p>Online Users:</p>
+          <ul data-bind="foreach: online_users" id="online_users">
+              <li data-bind="text: $data"></li>
+          </ul>
+          <br>
+          <br>
+          <br>
+          <br><br>
+          <br>
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+
+
+
+
 
   </body>
   <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
