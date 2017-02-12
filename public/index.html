@@ -1,72 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./css/theme.css">
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>The Trivia App </title>
 
-  </head>
-  <body>
+</head>
 
+<body>
 
+    <!--BootStrap     -->
+    <!--  create breakpoint fora large screen "col-lg-1 bg-warning"= column     -->
+    <!-- lg = large screen  1 is how many columns you want the div to take up     -->
 
+    <div class="container">
+        <div class="row">
 
+            <div class="col-lg-12 col-xs-12 bg-">
 
-<!--BootStrap     -->
-<!--  create breakpoint fora large screen "col-lg-1 bg-warning"= column     -->
-<!-- lg = large screen  1 is how many columns you want the div to take up     -->
+                <h1 id="h01" class="text-center"> The Trivia App </h1>
+            </div>
 
-    <div class="container-fluid">
-      <div class="row">
-
-
-        <div class="col-lg-12 col-xs-12 bg-info">
-
-            <h1 id="h01" class="text-center"> The Trivia App </h1>
-        </div>
-
-
-        <div class="col-lg-12 col-md-12 col-xs-12 bg-info">
-          <p id="p01" class="text-left"><br>Open this site with different tabs or different computers and see how
+            <div class="col-lg-12 col-md-12 col-xs-12 bg-">
+                <h2 id="h02" class="text-left"><br>Open this site with different tabs or different computers and see how
             this website updates in real-time using web sockets and knockout.js!</p>
         </div>
 
-
-        <div class="col-lg-12 col-md-12 col-xs-12 bg-info">
-
-                <br></br>
-
+        <div class="col-lg-12 col-md-12 col-xs-12 bg-">
 
                 <br></br>
 
-                <div class="col-lg-12 col-md-12 col-xs-12 bg-info">
+                <br></br>
+
+                <div class="col-lg-12 col-md-12 col-xs-12 bg-">
 
                   <p>Online Users:</p>
                   <ul data-bind="foreach: online_users" id="online_users">
                       <li data-bind="text: $data"></li>
                   </ul>
 
-
-
                         <br></br>
                 </div>
         </div>
 
-
-        <div class="col-lg-12 col-md-12 col-xs-12 bg-info">
+        <div class="col-lg-12 col-md-12 col-xs-12 bg-">
           <br></br>
-
-
-
 
           <div class="wrapper">
 
             <input data-bind="click: submit_user_name" type="button" id="submit_user_name_button" value="Join">
             <input id="user_name"></input>
             <br></br>
-
-
 
             <br>
             <input data-bind="click: get_question" type="button" id="get_question" value="Get New Question"></input>
@@ -82,14 +68,11 @@
 
             </div>
 
-
-
           <br></br>
 
           <p data-bind="text: right_score" id="right_score"></p>
           <p data-bind="text: wrong_score" id="wrong_score"></p>
           <br></br>
-
 
           <br>
           <br>
@@ -98,16 +81,8 @@
           <br>
         </div>
 
-
       </div>
     </div>
-
-
-
-
-
-
-
 
   </body>
   <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>

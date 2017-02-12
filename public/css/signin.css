@@ -1,51 +1,53 @@
-/* Full-width input fields */
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+body {
+  background: @beige;
+  color: black;
 }
 
-/* Set a style for all buttons */
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
+.wrapper {
+  height: 100%;
+  display: table;
+  width: 100%;
+  text-align: center;
 }
 
-/* Extra styles for the cancel button */
-.cancelbtn {
-    padding: 14px 20px;
-    background-color: #f44336;
+.header {
+  display: table-row;
+  height: 1px;
+  background: @yellow;
 }
 
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn,.signupbtn {
-    float: left;
-    width: 50%;
+.main {
+  height: 100%;
+  display: table;
+  width: 100%;
 }
 
-/* Add padding to container elements */
-.container {
-    padding: 16px;
+.box {
+  display: table-cell;
 }
 
-/* Clear floats */
-.clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
+.sidebar {
+  width: 100px;
+  background: @orange;
 }
 
-/* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
-    .cancelbtn, .signupbtn {
-        width: 100%;
-    }
+.footer {
+  display: table-row;
+  height:1px;
+  background: @green;
+  color: @beige;
 }
+
+/*====== Ignore section below ======*/
+
+@orange: #BD4932;
+@yellow: #FFD34E;
+@green: #105B63;
+@beige: #FFFAD5;
+
+
+/* Basic Style*/
+* { margin:0; padding:0;}
+html, body { height: 100%; }
+button { padding: 5px 10px;position:fixed;bottom: 50px;right:0px;left:0px;margin:auto; width: 200px; display: block; -webkit-appearance: none;background: @orange; outline: none;  border: 2px solid #DB9E36; color: @yellow; border-radius: 10px; box-shadow: 0 2px 3px rgba(0,0,0,0.5);cursor: pointer;}
+button:active {border-color: @beige; color:@beige;}
