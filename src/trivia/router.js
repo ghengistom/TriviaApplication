@@ -4,6 +4,7 @@
 var path = require('path');
 var express = require('express');
 var Question = require('../models/question');
+var User = require('../models/user');
 var redis = require("redis"); //require redis module
 var router = express.Router();
 
@@ -58,11 +59,58 @@ router.get('/signup', function(req,res) {
 //=====================================================
 //Data for post sign up
 router.post('/signup', function(req, res) {
+
+
+  var name = req.body.name;
+  var phone = req.body.phone;
   var email = req.body.email;
   var password = req.body.password;
+  var password2 = req.body.password2;
 
-  console.log("This is the email" + email);
+  var object = {
+                "name": name,
+                "phone": phone,
+                "email": email,
+                "password": password,
+                };
+
+
+  User.create(object, function(err, question){
+    if (err) {
+      return res.status(500).json({err: err.message});
+    }
+    //res.json({'object' : question, message: 'Question Created'});
+  });
+
+
+
+/*
+
+  JSON.stringify(phone);
+  JSON.stringify(name);
+  JSON.stringify(email);
+  JSON.stringify(password2);
+  JSON.stringify(password);
+
+  console.log("this is the name " + name);
+  console.log("\nthis is the phone" + phone);
+  console.log("\nThis is the email" + email);
   console.log("\n This is the password" + password);
+  console.log("\n This is the password2 " + password2);
+
+  var object = {
+                "name": name,
+                "phone": phone,
+                "email": email,
+                "password": password,
+                "password2": password2
+               };
+
+  var object2 = JSON.stringify(object);
+  console.log("\n\nTHis is the object " + object2);
+  res.send(object2);
+*/
+
 })
 
 
