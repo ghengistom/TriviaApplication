@@ -67,20 +67,38 @@ router.post('/signup', function(req, res) {
   var password = req.body.password;
   var password2 = req.body.password2;
 
-  var object = {
-                "name": name,
-                "phone": phone,
-                "email": email,
-                "password": password,
-                };
+  if(password ==password2){
+    console.log("\n Passords match \n Access Granted");
+
+    //put all new user details in JSON object
+    var object = {
+                  "name": name,
+                  "phone": phone,
+                  "email": email,
+                  "password": password,
+                  };
+
+    //Create a new user in Mongodb with mongoose library
+    User.create(object, function(err, question){
+      if (err) {
+        return res.status(500).json({err: err.message});
+      }
+      //res.json({'object' : question, message: 'Question Created'});
+    });
+    res.contentType('application/json');
+    var data = JSON.stringify('http://ec2-52-52-136-108.us-west-1.compute.amazonaws.com:9000/trivia.html');
+    res.header('Content-Length', data.length);
+    res.end(data);
+
+    //res.send({redirect: '../public/trivia'});
+  }
+//Else case passwords don't match.
+  else{
+      console.log("Passwords didn't match");
+  }
 
 
-  User.create(object, function(err, question){
-    if (err) {
-      return res.status(500).json({err: err.message});
-    }
-    //res.json({'object' : question, message: 'Question Created'});
-  });
+
 
 
 
@@ -111,7 +129,7 @@ router.post('/signup', function(req, res) {
   res.send(object2);
 */
 
-})
+});
 
 
 

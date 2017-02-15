@@ -20,9 +20,6 @@ $("#signupbutton").on('click', function(){
                   "password2": password2
                  }
 
-    var object2 = JSON.stringify(object);
-    console.log("This is the object stringified  " + object2);
-
 
     //var sobject = JSON.stringify(object);
     // send a POST request to our api to check if the user's answer is correct.
@@ -33,13 +30,14 @@ $("#signupbutton").on('click', function(){
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function(data){
+          window.location = data;
 
-
-        console.log(data);
-
+        },
+        error: function(){
+          alert("Passords don't match!");
         }
+
     });
 
-    console.log("this is the contents of the email variable not stringified" + object);
-    console.log("this is the contents of the email variable" + sobject);
+
 });
