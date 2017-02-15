@@ -1,13 +1,18 @@
+var name;
 var email;
 var password;
 
+
 $("#signinbutton").on('click', function(){
+    name = $("#inputName").val();
     email = $("#inputEmail").val();
     password = $("#inputPassword").val();
     console.log(email);
     console.log("\n" + password);
     //alert("Value: " + $("#psw").val());
-    var object = {"email": email,
+    var object = {
+                  "name" : name,
+                  "email" : email,
                   "password": password
                  }
 
@@ -32,6 +37,9 @@ $("#signinbutton").on('click', function(){
         //JSON.parse(data);
       //  console.log("This is from the server " + data.header);
           window.location = data;
+        },
+        error: function(){
+          alert("Either 1 of the 3 fields are incorrect or user doesn't exist in DB!");
         }
     });
 

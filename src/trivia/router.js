@@ -62,11 +62,55 @@ router.get('/signin1', function(req,res) {
 //router.put('/questions/:id', function(req, res) {
 router.post('/signin1', function(req, res) {
 
+
+  var name = req.body.name;
   var email = req.body.email;
   var password = req.body.password;
 
-
+/*
   console.log("This is the email from /sign1 " + email);
+
+  var name2 = JSON.stringify(name);
+  var email2 = JSON.stringify(email);
+  var password2 = JSON.stringify(password);
+
+    console.log("\n\n email2 tweaked  " + name2);
+  console.log("\n\n email2 tweaked  " + email2);
+    console.log("\n\n password tweaked  " + password2);
+//query data base to verify if the user exists in the system
+*/
+var object = {
+      "name" : name,
+      "email" : email,
+      "password" : password
+}
+
+
+  User.findOne(
+      //{"name" : name2, "email" : email2, "password" : password2},
+      object,
+      function(err, user)  {
+        if (err){
+          console.log("ERROR finding " + err);
+          res.send(err);
+        }
+        if (user){
+            console.log("\n user found in DB \n");
+            res.contentType('application/json');
+            var data = JSON.stringify('http://ec2-52-52-136-108.us-west-1.compute.amazonaws.com:9000/trivia.html');
+            res.header('Content-Length', data.length);
+            res.end(data);
+        } else{
+          console.log("\n\n User doens't exist \n\n");
+        //res.send("The email address: " + email +" doesn't exist.");
+        }
+      }
+  )
+
+
+
+
+
 
     //Send JSON token after we login so we can authenticate further requests to api
     //1st Create a token   2 parameters: a payload, and a secret
@@ -76,14 +120,15 @@ router.post('/signin1', function(req, res) {
   //  res.status(200).json({myToken});
 
 
-  console.log("This is the email" + email);
-  console.log("\n This is the password" + password);
+  //console.log("This is the email  " + email);
+  //console.log("\n This is the password  " + password);
 
+/*
   res.contentType('application/json');
   var data = JSON.stringify('http://localhost:9000/trivia.html');
   res.header('Content-Length', data.length);
   res.end(data);
-
+*/
 
 
 
@@ -149,7 +194,7 @@ router.post('/signup', function(req, res) {
       //res.json({'object' : question, message: 'Question Created'});
     });
     res.contentType('application/json');
-    var data = JSON.stringify('http://localhost:9000/signin1.html');
+    var data = JSON.stringify('http://ec2-52-52-136-108.us-west-1.compute.amazonaws.com:9000/signin1.html');
     res.header('Content-Length', data.length);
     res.end(data);
 

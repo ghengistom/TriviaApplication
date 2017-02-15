@@ -13,7 +13,7 @@
 
 
 // setup connection.
-var socket = io.connect('http://localhost:9001');
+var socket = io.connect('http://ec2-52-52-136-108.us-west-1.compute.amazonaws.com:9001');
 
 
 
