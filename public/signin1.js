@@ -29,17 +29,14 @@ $("#signinbutton").on('click', function(){
         //    "user_name": window.USER_NAME,
         //    "correct": JSON.parse(data).correct
         //  }
-
-        console.log(data);
-
+        //JSON.parse(data);
+      //  console.log("This is from the server " + data.header);
+          window.location = data;
         }
     });
 
-    // Send the data using post
-    //var posting = $.post( /signin1, sobject );
 
 
 
-    console.log("this is the contents of the email variable not stringified" + object);
-    console.log("this is the contents of the email variable" + sobject);
+
 });

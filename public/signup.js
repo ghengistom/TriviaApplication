@@ -7,14 +7,14 @@ var password2;
 
 $("#signupbutton").on('click', function(){
     name = $("#inputName").val();
-    phone = $("#inputNumber").val();
+  //  phone = $("#inputNumber").val();
     email = $("#inputEmail").val();
     password = $("#inputPassword").val();
     password2 = $("#inputPassword2").val();
 
     var object = {
                   "name": name,
-                  "phone": phone,
+                //  "phone": phone,
                   "email": email,
                   "password": password,
                   "password2": password2

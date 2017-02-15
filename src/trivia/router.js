@@ -7,6 +7,31 @@ var Question = require('../models/question');
 var User = require('../models/user');
 var redis = require("redis"); //require redis module
 var router = express.Router();
+require('../app.js');
+
+/*
+var app = express();
+
+var bodyParser = require('body-parser');
+//Add JWT libraries
+var expressJWT = require('express-jwt');
+var jwt = require('jsonwebtoken');
+*/
+
+
+/*
+//app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+//call in my library expressJWT. Pass in object with my secret
+//The convention is to add the secret to another file!
+app.use(expressJWT({secret: 'crazy kiki'}).unless({ path: ['/signup']}));
+//                        make some routes not require this token with
+//                        .unless(object array)
+//next add middleware that checks jwt on requests to api
+*/
+
 
 //make count object to store the counts
 var counts = {};
@@ -40,8 +65,29 @@ router.post('/signin1', function(req, res) {
   var email = req.body.email;
   var password = req.body.password;
 
+
+  console.log("This is the email from /sign1 " + email);
+
+    //Send JSON token after we login so we can authenticate further requests to api
+    //1st Create a token   2 parameters: a payload, and a secret
+  //  var myToken = jwt.sign({ 'email': 'email'}, {secret: 'crazy kiki'});
+  //  console.log("this is the token" + myToken);
+                                //password needs to match middleware in app.js line 38
+  //  res.status(200).json({myToken});
+
+
   console.log("This is the email" + email);
   console.log("\n This is the password" + password);
+
+  res.contentType('application/json');
+  var data = JSON.stringify('http://localhost:9000/trivia.html');
+  res.header('Content-Length', data.length);
+  res.end(data);
+
+
+
+
+
 });
 //=====================================================
 //Data for sign in
@@ -50,7 +96,7 @@ router.post('/signin1', function(req, res) {
 //=====================================================
 //Data for get sign up
 router.get('/signup', function(req,res) {
-    res.sendFile(path.resolve('public/signup.html'));
+    res.sendFile(path.resolve('public/index.html'));
 
 });
 //=====================================================
@@ -62,10 +108,27 @@ router.post('/signup', function(req, res) {
 
 
   var name = req.body.name;
-  var phone = req.body.phone;
+//  var phone = req.body.phone;
   var email = req.body.email;
   var password = req.body.password;
   var password2 = req.body.password2;
+
+  if(!req.body.name){
+    res.status(400).send('Name Required');
+    return;
+  }
+  if(!req.body.email){
+    res.status(400).send('Email Required');
+    return;
+  }
+  if(!req.body.password){
+    res.status(400).send('Password Required');
+    return;
+  }
+  if(!req.body.password2){
+    res.status(400).send('Password Required');
+    return;
+  }
 
   if(password ==password2){
     console.log("\n Passords match \n Access Granted");
@@ -73,7 +136,7 @@ router.post('/signup', function(req, res) {
     //put all new user details in JSON object
     var object = {
                   "name": name,
-                  "phone": phone,
+                //  "phone": phone,
                   "email": email,
                   "password": password,
                   };
@@ -86,7 +149,7 @@ router.post('/signup', function(req, res) {
       //res.json({'object' : question, message: 'Question Created'});
     });
     res.contentType('application/json');
-    var data = JSON.stringify('http://ec2-52-52-136-108.us-west-1.compute.amazonaws.com:9000/trivia.html');
+    var data = JSON.stringify('http://localhost:9000/signin1.html');
     res.header('Content-Length', data.length);
     res.end(data);
 
