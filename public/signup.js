@@ -30,14 +30,30 @@ $("#signupbutton").on('click', function(){
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function(data){
+        console.log("this is the location in data " + data);
           window.location = data;
 
         },
         error: function(){
-          alert("Passords don't match!");
+          alert("Passwords don't match!");
         }
 
     });
 
+/*
+function Redirect(){
+  window.location = "http://localhost:9000";
+
+}
+*/
+
+
+
+});
+
+
+
+$("#gosignin").on('click', function(){
+  window.location ="http://localhost:9000/signin1";
 
 });

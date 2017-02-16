@@ -97,7 +97,7 @@ var object = {
         if (user){
             console.log("\n user found in DB \n");
             res.contentType('application/json');
-            var data = JSON.stringify('http://ec2-52-52-136-108.us-west-1.compute.amazonaws.com:9000/trivia.html');
+            var data = JSON.stringify('http://localhost:9000/trivia.html');
             res.header('Content-Length', data.length);
             res.end(data);
         } else{
@@ -176,7 +176,7 @@ router.post('/signup', function(req, res) {
   }
 
   if(password ==password2){
-    console.log("\n Passords match \n Access Granted");
+    console.log("\n Passwords match \n Access Granted");
 
     //put all new user details in JSON object
     var object = {
@@ -194,7 +194,7 @@ router.post('/signup', function(req, res) {
       //res.json({'object' : question, message: 'Question Created'});
     });
     res.contentType('application/json');
-    var data = JSON.stringify('http://ec2-52-52-136-108.us-west-1.compute.amazonaws.com:9000/signin1.html');
+    var data = JSON.stringify('http://localhost:9000/signin1.html');
     res.header('Content-Length', data.length);
     res.end(data);
 

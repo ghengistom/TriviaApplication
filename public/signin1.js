@@ -43,8 +43,10 @@ $("#signinbutton").on('click', function(){
         }
     });
 
+});
 
 
-
+$("#gosignup").on('click', function(){
+  window.location ="http://localhost:9000";
 
 });
