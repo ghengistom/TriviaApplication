@@ -11,17 +11,8 @@ var app = express();
 
 
 //Add JWT libraries
-var expressJWT = require('express-jwt');
-var jwt = require('jsonwebtoken');
 
-
-
-
-
-
-
-
-
+//Controllers
 
 
 
@@ -32,18 +23,6 @@ require('./seed'); // populate mongo database with some trivia.
 //===================================================================================
 app.use('/', express.static('public'));
 app.use(parser.json());
-
-//call in my library expressJWT. Pass in object with my secret
-//The convention is to add the secret to another file!
-//app.use(expressJWT({secret: 'crazy kiki'}).unless({ path: ['/signup', '/', '/signin', '/signin1']}));
-//                        make some routes not require this token with
-//                        .unless(object array)
-//next add middleware that checks jwt on requests to api
-
-
-
-
-
 
 
 //===================================================================================
@@ -58,42 +37,6 @@ app.listen(9000, function() {
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 server.listen(9001);
-
-
-
-
-
-
-/*
-//app.use(bodyParser.urlencoded());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-//call in my library expressJWT. Pass in object with my secret
-//The convention is to add the secret to another file!
-app.use(expressJWT({secret: 'crazy kiki'}).unless({ path: ['/signup']}));
-//                        make some routes not require this token with
-//                        .unless(object array)
-//next add middleware that checks jwt on requests to api
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //===================================================================================

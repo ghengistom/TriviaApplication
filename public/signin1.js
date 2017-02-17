@@ -7,18 +7,20 @@ $("#signinbutton").on('click', function(){
     name = $("#inputName").val();
     email = $("#inputEmail").val();
     password = $("#inputPassword").val();
+    token =   window.sessionStorage.accessToken;
     console.log(email);
     console.log("\n" + password);
     //alert("Value: " + $("#psw").val());
     var object = {
                   "name" : name,
                   "email" : email,
-                  "password": password
+                  "password": password,
+                  "token" : token
                  }
 
 
     //var sobject = JSON.stringify(object);
-
+//var headertoken;
 
     // send a POST request to our api to check if the user's answer is correct.
     $.ajax({
@@ -27,7 +29,16 @@ $("#signinbutton").on('click', function(){
       data: JSON.stringify(object),
       contentType: "application/json; charset=utf-8",
       dataType: "json",
+      headers: {
+          'Authorization':'Bearer '+window.sessionStorage.accessToken,
+        //  'X_CSRF_TOKEN': window.sessionStorage.accessToken,
+          'Content-Type':'application/json'
+      },
       success: function(data){
+      //  var tokenstringified = JSON.stringify(data.token);
+        //   window.headertoken ={"token1" : tokenstringified} ;
+      //  alert("SUCCESSFUL SIGNIN" + headertoken);
+
           // build an object to store the user's name and the corrrectness of their answer.
           // posts to /answer returns answer_response in this format: { "correct" : true}
         //  var user_answer = {
@@ -36,6 +47,8 @@ $("#signinbutton").on('click', function(){
         //  }
         //JSON.parse(data);
       //  console.log("This is from the server " + data.header);
+
+    //  alert("this is the headercontents" + headertoken);
           window.location = data;
         },
         error: function(){

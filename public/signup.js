@@ -30,7 +30,7 @@ $("#signupbutton").on('click', function(){
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function(data){
-        console.log("this is the location in data " + data);
+
           window.location = data;
 
         },
