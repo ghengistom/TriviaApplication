@@ -8,6 +8,10 @@ var User = require('../models/user');
 var redis = require("redis"); //require redis module
 var app = express();
 //will be my secure routes
+var cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
+
 var router = express.Router();
 
 
@@ -38,8 +42,10 @@ router.get('/api', authenticateController.authenticate);
 //Validation middleware
 router.use(function(req,res,next){
   //gives user 2 options to pass it to us either header or body
-  var token = req.body.token || req.headers['token'];
-
+//|| req.headers.cookie
+var scookie = res.cookie(token);
+  var token = scookie || req.body.token || req.headers['token'] ;
+  console.log("in Validation middleware printing value of token!! " +token);
   //verify if user has a token
   if(token){
     res.send("You have a token time to validate it");
@@ -79,7 +85,7 @@ router.get('/api/signin', function(req,res) {
   res.sendFile(path.resolve('public/signin.html'));
 })
 */
-router.get('/signin1', function(req,res) {
+router.get('/api/signin1', function(req,res) {
   console.log("at signin1 \n");
   res.sendFile(path.resolve('public/signin1.html'));
 })

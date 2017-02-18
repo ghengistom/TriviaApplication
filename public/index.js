@@ -8,7 +8,11 @@ $(document).ready(function(){
         if(token != null){
         //save token on clientside to localstorage(browser storage)
         //console.log("line 10 this is what is in the token var" + JSON.stringify(token));
+      //  document.cookie = "token"= token.token;
+
         window.sessionStorage.accessToken = token.token;
+        document.cookie = 'token' + "=" + JSON.stringify(token.token);
+
         localStorage.setItem('token', JSON.stringify(token.token));
         }
         else{
@@ -30,7 +34,14 @@ $(document).ready(function(){
 
 console.log("line 26!!!!!!!1" );
 $.ajax({
-
+  xhrFields: {
+    withCredentials: true
+},
+  headers: {
+      'Authorization':'Bearer '+window.sessionStorage.accessToken,
+    //  'X_CSRF_TOKEN': window.sessionStorage.accessToken,
+      'Content-Type':'application/json'
+  },
     url: '/signin1',
     type: 'GET',
     dataType: "json",
