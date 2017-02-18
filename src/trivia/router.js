@@ -7,10 +7,15 @@ var Question = require('../models/question');
 var User = require('../models/user');
 var redis = require("redis"); //require redis module
 var app = express();
-//will be my secure routes
-var cookieParser = require('cookie-parser');
+var strsplit = require('strsplit');
 
-app.use(cookieParser());
+//will be my secure routes
+//var cookieParser = require('cookie-parser');
+
+
+
+
+//app.use(cookieParser());
 
 var router = express.Router();
 
@@ -34,21 +39,43 @@ app.use(bodyParser.json());
 app.use('/secure-api', router);
 
 
+
 //get authenticate controller
-router.get('/api', authenticateController.authenticate);
+router.get('/authenticate/api', authenticateController.authenticate);
 //app.get('/api/get-data', dataController.getData);
 
 
 //Validation middleware
 router.use(function(req,res,next){
+var clientToken = JSON.stringify(req.headers.cookie);
+
+var clTParsed = JSON.parse(clientToken);
+//var regex = new Regex(/clTParsed/);
+
+//make a regulars express to pull out just the token from the token.cookie
+var ss = strsplit(clTParsed, '=', 2 );
+console.log(ss[1]);
+
+//str.slic(0,6)
+//console.log("parsed" + clTParsed);
+//  var zeeCookie =
+//req.headers['token']
+//console.log("body of token" + req.body.token);
   //gives user 2 options to pass it to us either header or body
 //|| req.headers.cookie
-var scookie = res.cookie(token);
-  var token = scookie || req.body.token || req.headers['token'] ;
-  console.log("in Validation middleware printing value of token!! " +token);
+//var scookie = req.cookies.token;
+//console.log("this is suppose to be the header" + JSON.stringify(req.headers.token));
+//console.log("this is the cookie" + scookie);
+
+
+  var token = req.body.token ||  ss[1];
+
+
+  //console.log("in Validation middleware printing value of token!! " +token);
   //verify if user has a token
   if(token){
-    res.send("You have a token time to validate it");
+    console.log("You have a token time to validate it!");
+    //res.send("You have a token time to validate it");
     jwt.verify(token, process.env.secret, function(err, decode){
       if(err){
         res.status(500).send("Invalid token");
@@ -85,9 +112,9 @@ router.get('/api/signin', function(req,res) {
   res.sendFile(path.resolve('public/signin.html'));
 })
 */
-router.get('/api/signin1', function(req,res) {
-  console.log("at signin1 \n");
-  res.sendFile(path.resolve('public/signin1.html'));
+router.get('/signin1', function(req,res) {
+  console.log("\n\nat signin1 \n");
+  res.sendFile(path.resolve('/signin1.html'));
 })
 
 
@@ -142,6 +169,7 @@ var object = {
 //=====================================================
 //Data for get sign up
 app.get('/signup', function(req,res) {
+  //  console.log('token: ', req.cookies);
     res.sendFile(path.resolve('public/signup.html'));
 
 });

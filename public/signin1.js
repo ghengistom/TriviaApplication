@@ -7,15 +7,15 @@ $("#signinbutton").on('click', function(){
     name = $("#inputName").val();
     email = $("#inputEmail").val();
     password = $("#inputPassword").val();
-    token =   window.sessionStorage.accessToken;
+  //  token =   window.sessionStorage.accessToken;
     console.log(email);
     console.log("\n" + password);
     //alert("Value: " + $("#psw").val());
     var object = {
                   "name" : name,
                   "email" : email,
-                  "password": password,
-                  "token" : token
+                  "password": password
+                //  "token" : token
                  }
 
 
@@ -29,11 +29,13 @@ $("#signinbutton").on('click', function(){
       data: JSON.stringify(object),
       contentType: "application/json; charset=utf-8",
       dataType: "json",
+      /*
       headers: {
           'Authorization':'Bearer '+window.sessionStorage.accessToken,
         //  'X_CSRF_TOKEN': window.sessionStorage.accessToken,
           'Content-Type':'application/json'
       },
+      */
       success: function(data){
       //  var tokenstringified = JSON.stringify(data.token);
         //   window.headertoken ={"token1" : tokenstringified} ;
@@ -55,11 +57,5 @@ $("#signinbutton").on('click', function(){
           alert("Either 1 of the 3 fields are incorrect or user doesn't exist in DB!");
         }
     });
-
-});
-
-
-$("#gosignup").on('click', function(){
-  window.location ="http://localhost:9000";
 
 });
