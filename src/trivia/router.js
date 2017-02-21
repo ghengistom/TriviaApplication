@@ -6,31 +6,95 @@ var express = require('express');
 var Question = require('../models/question');
 var User = require('../models/user');
 var redis = require("redis"); //require redis module
-var router = express.Router();
-require('../app.js');
-
-/*
 var app = express();
+var strsplit = require('strsplit');
+
+
+//will be my secure routes
+//var cookieParser = require('cookie-parser');
+
+
+
+
+//app.use(cookieParser());
+
+var router = express.Router();
+
+
+require('../app.js');
+//Add JWT libraries
+//var expressJWT = require('express-jwt');
+//var jwt = require('jsonwebtoken');
+
+
+//Controllers
+//var authenticateController = require('../controllers/authenticate-controller');
+
+//makes secret a constant value
+process.env.secret ='crazy kiki';
+
 
 var bodyParser = require('body-parser');
-//Add JWT libraries
-var expressJWT = require('express-jwt');
-var jwt = require('jsonwebtoken');
-*/
+
+app.use(bodyParser.json());
+//app.use('/secure-api', router);
+
+
+
+//get authenticate controller
+//router.get('/authenticate/api', authenticateController.authenticate);
+//app.get('/api/get-data', dataController.getData);
 
 
 /*
-//app.use(bodyParser.urlencoded());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-//call in my library expressJWT. Pass in object with my secret
-//The convention is to add the secret to another file!
-app.use(expressJWT({secret: 'crazy kiki'}).unless({ path: ['/signup']}));
-//                        make some routes not require this token with
-//                        .unless(object array)
-//next add middleware that checks jwt on requests to api
+
+
+//Validation middleware
+router.use(function(req,res,next){
+var clientToken = JSON.stringify(req.headers.cookie);
+
+var clTParsed = JSON.parse(clientToken);
+//var regex = new Regex(/clTParsed/);
+
+//make a regulars express to pull out just the token from the token.cookie
+var ss = strsplit(clTParsed, '=', 2 );
+console.log("This is the first index in the array" + ss[0]);
+console.log(ss[1]);
+
+  var token = req.body.token ||  ss[1];
+
+
+  var verifiedJwt = jwt.verify(token,process.env.secret);
+  console.log("THisi s line 76 verified JWT\n\n" + JSON.stringify(verifiedJwt));
+
+  //verify if user has a token
+  if(token){
+    console.log("You have a token time to validate it!");
+    //res.send("You have a token time to validate it");
+    jwt.verify(token, process.env.secret, function(err, decode){
+      if(err){
+        res.status(500).send("Invalid token");
+      }else{
+        console.log("getting saved to db after it went through jwt.verify function" + token);
+        //saves into DB
+        next();
+
+      }
+    })
+  } else {
+    res.send("please send a token");
+  }
+
+})
+
+
+
+
 */
+
+
+//router.post('/post-data', dataController.postData);
+
 
 
 //make count object to store the counts
@@ -45,15 +109,22 @@ counts.right = 0;
 
 //=====================================================
 //Data for sign in
+<<<<<<< HEAD
 router.get('/home', function(req,res) {
   res.sendFile(path.resolve('public/home.html'));
 })
 router.get('/signin', function(req,res) {
+=======
+/*
+router.get('/api/signin', function(req,res) {
+>>>>>>> origin
   res.sendFile(path.resolve('public/signin.html'));
 })
+*/
 
 router.get('/signin1', function(req,res) {
-  res.sendFile(path.resolve('public/signin1.html'));
+  console.log("\n\nat signin1 \n");
+  res.sendFile(path.resolve('/signin1.html'));
 })
 
 
@@ -69,18 +140,6 @@ router.post('/signin1', function(req, res) {
   var email = req.body.email;
   var password = req.body.password;
 
-/*
-  console.log("This is the email from /sign1 " + email);
-
-  var name2 = JSON.stringify(name);
-  var email2 = JSON.stringify(email);
-  var password2 = JSON.stringify(password);
-
-    console.log("\n\n email2 tweaked  " + name2);
-  console.log("\n\n email2 tweaked  " + email2);
-    console.log("\n\n password tweaked  " + password2);
-//query data base to verify if the user exists in the system
-*/
 var object = {
       "name" : name,
       "email" : email,
@@ -98,56 +157,42 @@ var object = {
         }
         if (user){
             console.log("\n user found in DB \n");
+
             res.contentType('application/json');
             var data = JSON.stringify('http://localhost:9000/trivia.html');
             res.header('Content-Length', data.length);
             res.end(data);
         } else{
           console.log("\n\n User doens't exist \n\n");
-        //res.send("The email address: " + email +" doesn't exist.");
+
         }
       }
   )
 
-
-
-
-
-
-    //Send JSON token after we login so we can authenticate further requests to api
-    //1st Create a token   2 parameters: a payload, and a secret
-  //  var myToken = jwt.sign({ 'email': 'email'}, {secret: 'crazy kiki'});
-  //  console.log("this is the token" + myToken);
-                                //password needs to match middleware in app.js line 38
-  //  res.status(200).json({myToken});
-
-
-  //console.log("This is the email  " + email);
-  //console.log("\n This is the password  " + password);
-
-/*
-  res.contentType('application/json');
-  var data = JSON.stringify('http://localhost:9000/trivia.html');
-  res.header('Content-Length', data.length);
-  res.end(data);
-*/
-
-
-
-
 });
+
+
 //=====================================================
 //Data for sign in
 
 
+
+
 //=====================================================
 //Data for get sign up
-router.get('/signup', function(req,res) {
-    res.sendFile(path.resolve('public/index.html'));
+app.get('/signup', function(req,res) {
+  console.log("On the Server ins /api/signup!!");
+  //  console.log('token: ', req.cookies);
+    res.sendFile(path.resolve('public/signup'));
 
 });
 //=====================================================
 //Data for get sign up
+
+
+
+
+
 
 //=====================================================
 //Data for post sign up
@@ -207,53 +252,11 @@ router.post('/signup', function(req, res) {
       console.log("Passwords didn't match");
   }
 
-
-
-
-
-
-/*
-
-  JSON.stringify(phone);
-  JSON.stringify(name);
-  JSON.stringify(email);
-  JSON.stringify(password2);
-  JSON.stringify(password);
-
-  console.log("this is the name " + name);
-  console.log("\nthis is the phone" + phone);
-  console.log("\nThis is the email" + email);
-  console.log("\n This is the password" + password);
-  console.log("\n This is the password2 " + password2);
-
-  var object = {
-                "name": name,
-                "phone": phone,
-                "email": email,
-                "password": password,
-                "password2": password2
-               };
-
-  var object2 = JSON.stringify(object);
-  console.log("\n\nTHis is the object " + object2);
-  res.send(object2);
-*/
-
 });
-
-
-
-
-
-
 
 
 //=====================================================
 //Data for get sign up
-
-
-
-
 
 
 //==============================================================================

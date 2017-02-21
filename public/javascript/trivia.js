@@ -11,7 +11,6 @@
 
 
 
-
 // setup connection.
 var socket = io.connect('http://localhost:9001');
 
@@ -73,6 +72,7 @@ var submit_answer = function() {
       }
   });
 }
+
 //============================================================================
 var get_question = function (){
   // send a GET request to our api for a random question.
@@ -91,6 +91,8 @@ var get_question = function (){
           console.log('NULL Response from server for GET to /question');
         }
     }
+  //  beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization','Bearer ' + window.headertoken); }
+
   });
 }
 //============================================================================
@@ -132,11 +134,6 @@ var update_score = function() {
 /*Add section for sign up page
 
 */
-
-
-
-
-
 
 
 //============================================================================
