@@ -22,6 +22,7 @@ require('./database');
 require('./seed'); // populate mongo database with some trivia.
 //===================================================================================
 app.use('/', express.static('public'));
+
 app.use(parser.json());
 
 

@@ -29,6 +29,11 @@ $("#signupbutton").on('click', function(){
       data: JSON.stringify(object),
       contentType: "application/json; charset=utf-8",
       dataType: "json",
+      beforeSend: function (xhr) {
+      //  xhr.setRequestHeader ("Authorization",  + document.cookie);
+       xhr.setRequestHeader ("Authorization", "token" + document.cookie);
+      //xhr.setRequestHeader ("Authorization", "token" + window.sessionStorage.accessToken);
+      },
       success: function(data){
 
           window.location = data;

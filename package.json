@@ -16,6 +16,7 @@
     "mongoose": "^4.6.6",
     "redis": "^2.6.3",
     "regex": "^0.1.1",
-    "socket.io": "^1.5.1"
+    "socket.io": "^1.5.1",
+    "strsplit": "^1.0.0"
   }
 }

@@ -36,6 +36,12 @@ $("#signinbutton").on('click', function(){
           'Content-Type':'application/json'
       },
       */
+      
+      beforeSend: function (xhr) {
+      //  xhr.setRequestHeader ("Authorization",  + document.cookie);
+       xhr.setRequestHeader ("Authorization", "token" + document.cookie);
+      //xhr.setRequestHeader ("Authorization", "token" + window.sessionStorage.accessToken);
+      },
       success: function(data){
       //  var tokenstringified = JSON.stringify(data.token);
         //   window.headertoken ={"token1" : tokenstringified} ;

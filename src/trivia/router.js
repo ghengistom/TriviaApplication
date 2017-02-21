@@ -9,6 +9,7 @@ var redis = require("redis"); //require redis module
 var app = express();
 var strsplit = require('strsplit');
 
+
 //will be my secure routes
 //var cookieParser = require('cookie-parser');
 
@@ -22,12 +23,12 @@ var router = express.Router();
 
 require('../app.js');
 //Add JWT libraries
-var expressJWT = require('express-jwt');
-var jwt = require('jsonwebtoken');
+//var expressJWT = require('express-jwt');
+//var jwt = require('jsonwebtoken');
 
 
 //Controllers
-var authenticateController = require('../controllers/authenticate-controller');
+//var authenticateController = require('../controllers/authenticate-controller');
 
 //makes secret a constant value
 process.env.secret ='crazy kiki';
@@ -36,13 +37,16 @@ process.env.secret ='crazy kiki';
 var bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
-app.use('/secure-api', router);
+//app.use('/secure-api', router);
 
 
 
 //get authenticate controller
-router.get('/authenticate/api', authenticateController.authenticate);
+//router.get('/authenticate/api', authenticateController.authenticate);
 //app.get('/api/get-data', dataController.getData);
+
+
+/*
 
 
 //Validation middleware
@@ -54,24 +58,15 @@ var clTParsed = JSON.parse(clientToken);
 
 //make a regulars express to pull out just the token from the token.cookie
 var ss = strsplit(clTParsed, '=', 2 );
+console.log("This is the first index in the array" + ss[0]);
 console.log(ss[1]);
-
-//str.slic(0,6)
-//console.log("parsed" + clTParsed);
-//  var zeeCookie =
-//req.headers['token']
-//console.log("body of token" + req.body.token);
-  //gives user 2 options to pass it to us either header or body
-//|| req.headers.cookie
-//var scookie = req.cookies.token;
-//console.log("this is suppose to be the header" + JSON.stringify(req.headers.token));
-//console.log("this is the cookie" + scookie);
-
 
   var token = req.body.token ||  ss[1];
 
 
-  //console.log("in Validation middleware printing value of token!! " +token);
+  var verifiedJwt = jwt.verify(token,process.env.secret);
+  console.log("THisi s line 76 verified JWT\n\n" + JSON.stringify(verifiedJwt));
+
   //verify if user has a token
   if(token){
     console.log("You have a token time to validate it!");
@@ -80,9 +75,10 @@ console.log(ss[1]);
       if(err){
         res.status(500).send("Invalid token");
       }else{
-        console.log("getting saved to db");
+        console.log("getting saved to db after it went through jwt.verify function" + token);
         //saves into DB
         next();
+
       }
     })
   } else {
@@ -90,6 +86,12 @@ console.log(ss[1]);
   }
 
 })
+
+
+
+
+*/
+
 
 //router.post('/post-data', dataController.postData);
 
@@ -112,6 +114,7 @@ router.get('/api/signin', function(req,res) {
   res.sendFile(path.resolve('public/signin.html'));
 })
 */
+
 router.get('/signin1', function(req,res) {
   console.log("\n\nat signin1 \n");
   res.sendFile(path.resolve('/signin1.html'));
@@ -166,15 +169,23 @@ var object = {
 //Data for sign in
 
 
+
+
 //=====================================================
 //Data for get sign up
 app.get('/signup', function(req,res) {
+  console.log("On the Server ins /api/signup!!");
   //  console.log('token: ', req.cookies);
-    res.sendFile(path.resolve('public/signup.html'));
+    res.sendFile(path.resolve('public/signup'));
 
 });
 //=====================================================
 //Data for get sign up
+
+
+
+
+
 
 //=====================================================
 //Data for post sign up

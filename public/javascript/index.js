@@ -42,7 +42,7 @@ console.log("line 26!!!!!!!1" );
 //  window.location ="http://localhost:9000";
 console.log("Inside index.js inside button go2signup")
     $.ajax({
-      url: '/signup',
+      url: '/api/signup',
       type: 'GET',
       dataType: "json",
       success: function(data){
