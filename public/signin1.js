@@ -64,4 +64,11 @@ $("#signinbutton").on('click', function(){
         }
     });
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> parent of c76ce8d... Added redirects from index to signin and vice versa
 });

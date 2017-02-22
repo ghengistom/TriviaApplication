@@ -35,30 +35,18 @@ $("#signupbutton").on('click', function(){
       //xhr.setRequestHeader ("Authorization", "token" + window.sessionStorage.accessToken);
       },
       success: function(data){
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of c76ce8d... Added redirects from index to signin and vice versa
           window.location = data;
 
         },
         error: function(){
-          alert("Passwords don't match!");
+          alert("Passords don't match!");
         }
 
     });
 
-/*
-function Redirect(){
-  window.location = "http://localhost:9000";
-
-}
-*/
-
-
-
-});
-
-
-
-$("#gosignin").on('click', function(){
-  window.location ="http://localhost:9000/signin1";
 
 });
