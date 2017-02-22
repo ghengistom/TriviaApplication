@@ -45,9 +45,7 @@ counts.right = 0;
 
 //=====================================================
 //Data for sign in
-router.get('/home', function(req,res) {
-  res.sendFile(path.resolve('public/home.html'));
-})
+
 router.get('/signin', function(req,res) {
   res.sendFile(path.resolve('public/signin.html'));
 })
